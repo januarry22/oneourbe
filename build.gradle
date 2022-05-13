@@ -21,15 +21,25 @@ repositories {
 }
 
 dependencies {
+	// graphql
 	implementation 'org.springframework.boot:spring-boot-starter-graphql'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	// spring-security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// spring web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+
+	// session
 	implementation 'org.springframework.session:spring-session-core'
+
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// mysql
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -37,6 +47,12 @@ dependencies {
 	testImplementation 'org.springframework:spring-webflux'
 	testImplementation 'org.springframework.graphql:spring-graphql-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	// jsp
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation "javax.servlet:jstl:1.2"
+
+
 }
 
 tasks.named('test') {
