@@ -10,6 +10,7 @@ public class MainController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String home() {
         System.out.println("home controller start");
+        System.out.println("home controller start");
         return "index";
     }
 
