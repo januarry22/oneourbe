@@ -75,6 +75,7 @@ public class JwtProvider {
     }
 
     public Authentication getAuthentication(HttpServletRequest request,String token) {
+        // TODO: jwt 유저 권한 세팅 하기
         UserDetails userDetails = customUserDetailService.loadUserByUsername(this.getTokenInfo(request,"member_seq"));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
