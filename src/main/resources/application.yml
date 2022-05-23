@@ -1,0 +1,22 @@
+info:
+  app:
+    name: oneourbe
+spring:
+  application:
+    name: oneourbe
+#  http:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+      static-path-pattern: /resources/**
+server:
+  servlet:
+    encoding:
+      enabled: true

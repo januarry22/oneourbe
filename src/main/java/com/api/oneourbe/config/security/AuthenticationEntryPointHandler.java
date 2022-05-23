@@ -21,11 +21,13 @@ public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String exception = (String) request.getAttribute("exception");
-        ErrorCode errorCode; /** * 토큰이 없는 경우 예외처리 */if (exception == null) {
+        ErrorCode errorCode; /** * 토큰이 없는 경우 예외처리 */
+        if (exception == null) {
             errorCode = ErrorCode.UNAUTHORIZEDException;
             setResponse(response, errorCode);
             return;
-        } /** * 토큰이 만료된 경우 예외처리 */if (exception.equals("ExpiredJwtException")) {
+        } /** * 토큰이 만료된 경우 예외처리 */
+        if (exception.equals("ExpiredJwtException")) {
             errorCode = ErrorCode.ExpiredJwtException;
             setResponse(response, errorCode);
             return;

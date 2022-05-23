@@ -1,5 +1,6 @@
 package com.api.oneourbe.config.security;
 
+import com.api.oneourbe.service.CustomUserDetailService;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +23,9 @@ import java.util.Map;
 public class JwtProvider {
     private final long accessExpireTime = 1 * 60 * 1000L; // 1분
     private final long refreshExpireTime = 1 * 60 * 2000L;  // 60일
+
+    private final CustomUserDetailService customUserDetailService;
+
 
     public String createAccessToken(String member_seq) {
         long expiration = System.currentTimeMillis() + accessExpireTime;
@@ -70,8 +74,7 @@ public class JwtProvider {
      * 토큰 내부 header
      */
     public String getToken(HttpServletRequest request) {
-        String token = request.getHeader(AUTHORIZATION);
-        return token;
+        return request.getHeader(AUTHORIZATION);
     }
 
     public Authentication getAuthentication(HttpServletRequest request,String token) {

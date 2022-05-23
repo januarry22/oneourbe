@@ -1,0 +1,41 @@
+spring.datasource:
+  driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  jdbcUrl: jdbc:log4jdbc:mysql://54.180.90.61/oneourbe_dev?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+  username: dev1
+  password: th5481thA!
+  connection-test-query: SELECT 1
+  maxWait: 3000 #풀에 커넥션이 존재하지 않을때, 커넥션이 풀에 다시 리턴되기까지 대기시간 1/1000초단위 -1일경우 무한대기
+  minIdle: 5 #사용되지 않고 풀에 저장될수 있는 최소 커넥션수
+  maxActive: 20 #커넥션풀이 제공할 최대 커넥션수
+  initialSize: 5 #초기에 생성될 커넥션수
+spring.profiles:
+  active: local
+server:
+  port: 8080
+
+info:
+  app:
+    name: oneourbe
+    domain: http://localhost:8080
+    s_domain: localhost:8080
+spring:
+  application:
+    name: oneourbe
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      static-path-pattern: /resources/**
+  servlet:
+    multipart:
+      maxFileSize: 15MB
+      maxRequestSize: 15MB
+fileupload:
+  ext:
+    image: JPG,JPEG,JFIF,EXIF,GIF,BMP,PNG,PPM,PGM,PBM,PNM
+    video: WEBM,MKV,FLV,VOB,OGV,OGG,DRC,AVI,MOV,WMV,YUV,RM,RMVB,ASF,AMV,MP4,M4P,M4V,MPG,MP2,MPEG,MPE,MPV
