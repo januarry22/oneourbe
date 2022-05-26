@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.Map;
 
 @Aspect
@@ -36,6 +37,33 @@ public class logAop {
         System.out.println("##########################################################################################################");
         return joinPoint.proceed();
     }
+
+    /*GET 포인트컷*/
+    @Pointcut("execution(* com.api.oneourbe.controller.*.*RestController.*(..)) && @annotation(org.springframework.web.bind.annotation.GetMapping)")
+    public void requestGet(){}
+
+    /*GET 컨트롤러 실행전*/
+    @Before("requestGet()")
+    public void doBeforeGet(JoinPoint joinPoint) throws Throwable {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        Enumeration params = request.getParameterNames();
+        int index = 1;
+        String str = "";
+        System.out.println("############################################      Request(요청) Param     #################################");
+        while (params.hasMoreElements()) {
+            String name = (String) params.nextElement();
+            System.out.println("param [" + (index++) + "]   :  " + name + " - " + request.getParameter(name));
+            str += name+"="+request.getParameter(name)+"&";
+        }
+        System.out.println("############################################      Request(요청) Param     #################################");
+    //    this.reqSave(str);
+    }
+    /*GET 리턴시*/
+    @AfterReturning(returning = "result", pointcut = "requestGet()")
+    public void doAfterReturningGet(Object result) throws Throwable {
+        returnPrint(mapToJson(result));
+    }
+
 
 
     /*POST 포인트컷*/
