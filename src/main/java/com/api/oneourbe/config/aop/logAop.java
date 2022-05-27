@@ -23,7 +23,7 @@ public class logAop {
     static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     /*요청(전체) 포인트컷*/
-    @Around("execution(* com.api.oneourbe.controller..*.*(..)) ")
+    @Around("execution(* com.api.oneourbe.api.controller..*.*(..)) ")
     public Object requestAll(ProceedingJoinPoint joinPoint) throws Throwable { //
         // request, response 객체 얻어오기
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -39,7 +39,7 @@ public class logAop {
     }
 
     /*GET 포인트컷*/
-    @Pointcut("execution(* com.api.oneourbe.controller.*.*RestController.*(..)) && @annotation(org.springframework.web.bind.annotation.GetMapping)")
+    @Pointcut("execution(* com.api.oneourbe.api.controller.*.*RestController.*(..)) && @annotation(org.springframework.web.bind.annotation.GetMapping)")
     public void requestGet(){}
 
     /*GET 컨트롤러 실행전*/
@@ -67,7 +67,7 @@ public class logAop {
 
 
     /*POST 포인트컷*/
-    @Pointcut("execution(* com.api.oneourbe.controller.*.*RestController.*(..)) && @annotation(org.springframework.web.bind.annotation.PostMapping)")
+    @Pointcut("execution(* com.api.oneourbe.api.controller.*.*RestController.*(..)) && @annotation(org.springframework.web.bind.annotation.PostMapping)")
     public void requestPost(){}
 
     /*POST 컨트롤러 실행전*/

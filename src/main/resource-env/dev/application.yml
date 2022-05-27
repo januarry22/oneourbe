@@ -1,6 +1,6 @@
 spring.datasource:
   driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-  jdbcUrl: jdbc:log4jdbc:mysql://54.180.90.61/oneourbe_dev?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+  url : jdbc:log4jdbc:mysql://54.180.90.61/oneourbe_dev?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
   username: dev1
   password: th5481thA!
   connection-test-query: SELECT 1

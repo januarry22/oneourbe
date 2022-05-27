@@ -21,10 +21,7 @@ repositories {
 }
 
 dependencies {
-	// graphql
-	implementation 'org.springframework.boot:spring-boot-starter-graphql'
-	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 	// spring-security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
@@ -40,15 +37,26 @@ dependencies {
 
 	// lombok
 	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+
+	//lo4jdbc 쿼리 로그
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
 	// mysql
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// spring webflux
 	testImplementation 'org.springframework:spring-webflux'
+
+	// spring graphql
 	testImplementation 'org.springframework.graphql:spring-graphql-test'
+
+	// spring security
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	// jsp

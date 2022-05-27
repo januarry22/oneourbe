@@ -1,16 +1,15 @@
-package com.api.oneourbe.controller.login;
+package com.api.oneourbe.api.controller.login;
 
 
-import com.api.oneourbe.domain.api.ApiResponse;
-import com.api.oneourbe.domain.member.MemberInfoDAO;
-import com.api.oneourbe.service.auth.AuthService;
+import com.api.oneourbe.util.ApiResponse;
+import com.api.oneourbe.api.domain.member.MemberInfoDAO;
+import com.api.oneourbe.api.service.auth.AuthService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 
 @RestController
 @RequiredArgsConstructor

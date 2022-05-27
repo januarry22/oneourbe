@@ -1,4 +1,4 @@
-package com.api.oneourbe.service.auth;
+package com.api.oneourbe.api.service.auth;
 
 
 import org.springframework.stereotype.Service;

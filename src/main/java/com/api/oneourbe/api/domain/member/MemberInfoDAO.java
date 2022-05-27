@@ -1,4 +1,4 @@
-package com.api.oneourbe.domain.member;
+package com.api.oneourbe.api.domain.member;
 
 
 import lombok.Getter;

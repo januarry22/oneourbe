@@ -1,3 +1,16 @@
+spring.datasource:
+  driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  jdbc-url : jdbc:mysql://54.180.90.61/oneourbe_dev?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+  username: dev1
+  password: th5481thA!
+  connection-test-query: SELECT 1
+  maxWait: 3000 #풀에 커넥션이 존재하지 않을때, 커넥션이 풀에 다시 리턴되기까지 대기시간 1/1000초단위 -1일경우 무한대기
+  minIdle: 5 #사용되지 않고 풀에 저장될수 있는 최소 커넥션수
+  maxActive: 20 #커넥션풀이 제공할 최대 커넥션수
+  initialSize: 5 #초기에 생성될 커넥션수
+spring.profiles:
+  active: local
+
 info:
   app:
     name: oneourbe
@@ -20,3 +33,4 @@ server:
   servlet:
     encoding:
       enabled: true
+  port: 8080

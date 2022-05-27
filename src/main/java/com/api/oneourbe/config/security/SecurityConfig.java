@@ -1,12 +1,11 @@
 package com.api.oneourbe.config.security;
 
-import com.api.oneourbe.service.CustomUserDetailService;
+import com.api.oneourbe.api.service.member.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -45,7 +44,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring()
-                .antMatchers("/v3/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/security", "/swagger-ui/index.html","/swagger-ui/**", "/webjars/**");
+                .antMatchers("/v3/api-docs"
+                        , "/configuration/ui"
+                        , "/swagger-resources/**"
+                        , "/configuration/security"
+                        , "/swagger-ui/index.html"
+                        ,"/swagger-ui/**"
+                        , "/webjars/**");
     }
 
     @Override
@@ -60,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**/**")
                 .hasRole("ADMIN")
-                .antMatchers("/api/v1/login/**", "/api/v1/**")
+                .antMatchers("/api/v1/login/**", "/api/v1/**","/api/v1/sign/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

@@ -1,4 +1,4 @@
-package com.api.oneourbe.service;
+package com.api.oneourbe.api.service.member;
 
 import com.api.oneourbe.config.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
