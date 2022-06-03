@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.member.MemberSlaveMapper">
+
+	<select id="loginId" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*계정체크*/
+		select
+			member_seq
+		from
+			member m
+		where
+			m.email = #{email} and
+			m.login_type = 'E' and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="login" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*로그인*/
+		select
+			member_seq
+		from
+			member m
+		where
+			m.member_seq = #{member_seq} and
+			m.pw = password(#{pw}) and
+			m.login_type = 'E' and
+			dormancy_yn = 'N' and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+	<select id="loginSns" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*로그인(SNS)*/
+		select
+			member_seq
+		from
+			member m
+		where
+			m.email = #{email} and
+			m.login_type = #{login_type} and
+			dormancy_yn = 'N' and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="vaildChk" parameterType="object" resultType="int">
+		/*공통 중복체크*/
+		select
+			count(*)
+		from
+			member
+		where
+			${column_name} = #{column_value} and
+			<if test="column_name2 != null and !column_name2.equals(''.toString()) and column_value2 != null and !column_value2.equals(''.toString())">
+				${column_name2} = #{column_value2} and
+			</if>
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="userInfo" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*회원정보(member_seq로 획득)*/
+		select
+			m.*,
+			MD5(m.email) custom_pw,
+			case
+				when sms_dt is not null and datediff(now(), sms_dt) > 60 then 'Y'
+				when push_dt is not null and datediff(now(), push_dt) > 60 then 'Y'
+				else 'N'
+			end alarm_pop
+		from
+			member m
+		where
+			member_seq = #{member_seq} and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="userInfoPw" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*회원정보(계정으로 획득)*/
+		select
+			m.*,
+			MD5(m.email) custom_pw
+		from
+			member m
+		where
+			member_seq = #{member_seq} and
+			pw = password(#{pw}) and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="userInfoEmailPw" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*회원정보(계정으로 획득)*/
+		select
+			m.*,
+			MD5(m.email) custom_pw
+		from
+			member m
+		where
+			email = #{email} and
+			pw = password(#{pw}) and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="autoLogin" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*자동로그인*/
+		select
+			member_seq,
+			MD5(m.email) custom_pw
+		from
+			member m
+		where
+			MD5(m.email) = #{custom_pw} and
+			dormancy_yn = 'N' and
+			show_yn = 'Y' and
+			delete_yn = 'N'
+	</select>
+
+	<select id="memberSearchId" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*아이디 찾기*/
+		select
+			email,
+			date_format(create_dt, '%Y.%m.%d') create_dt_format,
+			login_type
+		from
+			member m
+		where
+			show_yn = 'Y' and
+			delete_yn = 'N' and
+			name = #{name} and
+			yyyymmdd = #{yyyymmdd}
+	</select>
+	<select id="memberSearchPw" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*비밀번호 검증하기*/
+		select
+			member_seq,
+			MD5(m.email) custom_pw
+		from
+			member m
+		where
+			show_yn = 'Y' and
+			delete_yn = 'N' and
+			email = #{email} and
+			yyyymmdd = #{yyyymmdd}
+	</select>
+
+	<select id="memberSearchVaildSns" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/* sns 가입계정 검증하기*/
+		select
+			member_seq,
+			login_type
+		from
+			member m
+		where
+			show_yn = 'Y' and
+			delete_yn = 'N' and
+			email = #{email}
+		limit 1
+	</select>
+
+
+	<select id="loginHstGet" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="kr.futuresolution.www.foapi.api.domain.member.MemberModel">
+		/*출석체크 확인*/
+		select
+			COUNT(*) visitCnt
+		from (
+			select
+				sub.create_dt,
+				@rownum := @rownum + 1 idx,
+				TIMESTAMPDIFF( day, sub.create_dt, now() ) no2
+			from (
+				select
+					date_format(create_dt, '%Y-%m-%d') create_dt
+				from
+					login_history lh
+				where
+					lh.member_seq = #{member_seq}
+				group by
+					date_format(create_dt, '%Y-%m-%d')
+				order by
+					date_format(create_dt, '%Y-%m-%d') asc
+			) sub,
+			(SELECT @rownum := 0) r
+			order by
+				sub.create_dt
+		)  r
+		group by
+			idx + no2
+		order by
+			idx + no2  asc
+		limit
+			0, 1
+	</select>
+	<select id="todayLoginHstChk" parameterType="kr.futuresolution.www.foapi.api.domain.member.MemberModel" resultType="int">
+		/*당일 로그인 체크*/
+		select
+			count(*) cnt
+		from
+			login_history
+		where
+			show_yn = 'Y' and
+			delete_yn = 'N' and
+			member_seq = #{member_seq} and
+			date_format(create_dt, '%Y%m%d') = date_format(now(), '%Y%m%d')
+	</select>
+
+</mapper>
