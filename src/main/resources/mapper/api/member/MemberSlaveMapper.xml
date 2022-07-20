@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.api.oneourbe.api.mapper.slave.member.MemberSlaveMapper">
 
-	<select id="loginId" parameterType="com.api.oneourbe.api.mapper.slave.member.MemberModel" resultType="com.api.oneourbe.api.mapper.slave.member.MemberModel">
+	<select id="loginId" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
 		/*계정체크*/
 		select
 			member_seq
@@ -15,7 +15,7 @@
 			delete_yn = 'N'
 	</select>
 
-	<select id="login" parameterType="com.api.oneourbe.api.mapper.slave.member.MemberModel" resultType="com.api.oneourbe.api.mapper.slave.member.MemberModel">
+	<select id="login" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
 		/*로그인*/
 		select
 			member_seq

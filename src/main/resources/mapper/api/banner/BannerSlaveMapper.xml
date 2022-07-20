@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.banner.BannerSlaveMapper">
+
+	<select id="bannerList" parameterType="com.api.oneourbe.api.domain.banner.BannerDAO" resultType="com.api.oneourbe.api.domain.banner.BannerDAO">
+		/* 배너 리스트 */
+		SELECT
+			banner_seq,
+		    title,
+		    link_url,
+		    img_url,
+		    comment,
+		    alt
+		FROM
+			banner b
+		WHERE
+			show_yn = 'Y'
+		    AND delete_yn = 'N'
+	</select>
+
+
+</mapper>
