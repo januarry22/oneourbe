@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.category.CategorySlaveMapper">
+
+	<select id="categoryMainList" parameterType="com.api.oneourbe.api.domain.category.CategoryDAO" resultType="com.api.oneourbe.api.domain.category.CategoryDAO">
+		/* 메인 최상위 카테고리 정보 */
+		SELECT
+            ct_total_seq,
+            type,
+		    name,
+            comment,
+            code
+		FROM
+            CATEGORY_TOTAL CT
+		WHERE
+			show_yn = 'Y'
+		    AND delete_yn = 'N'
+	</select>
+
+
+</mapper>
