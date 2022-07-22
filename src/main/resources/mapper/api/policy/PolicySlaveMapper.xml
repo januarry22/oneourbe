@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.policy.PolicySlaveMapper">
+
+	<select id="policy" parameterType="com.api.oneourbe.api.domain.policy.PolicyDAO" resultType="com.api.oneourbe.api.domain.policy.PolicyDAO">
+		/* 회사 약관 */
+		SELECT
+            cp_policy_seq,
+            type,
+            title,
+            content
+		FROM
+            CP_POLICY C
+		WHERE
+			show_yn = 'Y'
+		    AND delete_yn = 'N'
+        ORDER BY sort
+	</select>
+
+
+</mapper>
