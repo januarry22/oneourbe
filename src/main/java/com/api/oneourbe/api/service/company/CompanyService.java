@@ -1,9 +1,11 @@
-package com.api.oneourbe.api.service.banner;
+package com.api.oneourbe.api.service.company;
 
 
 import com.api.oneourbe.api.domain.banner.BannerDAO;
+import com.api.oneourbe.api.domain.company.CompanyDAO;
 import com.api.oneourbe.api.mapper.slave.banner.BannerSlaveMapper;
-import com.api.oneourbe.util.ApiResponse;
+import com.api.oneourbe.api.mapper.slave.company.CompanySlaveMapper;
+import com.api.oneourbe.api.service.banner.BannerBusiness;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,20 +15,16 @@ import java.util.List;
 
 @Service
 @CrossOrigin
-public class BannerService {
+public class CompanyService {
 
     @Autowired
-    BannerSlaveMapper bannerSlaveMapper;
-    @Autowired
-    BannerBusiness bannerBusiness;
+    CompanySlaveMapper companySlaveMapper;
 
 
     @Transactional(rollbackFor = Exception.class )
-    public List<BannerDAO> bannerList() throws Exception {
+    public CompanyDAO companyInfo() throws Exception {
 
-        List<BannerDAO> bannerList = bannerSlaveMapper.bannerList();
-
-        return bannerList;
+        return companySlaveMapper.companyInfo();
     }
 
 }

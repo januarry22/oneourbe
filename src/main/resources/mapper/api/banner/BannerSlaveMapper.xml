@@ -12,10 +12,11 @@
 		    comment,
 		    alt
 		FROM
-			banner b
+            BANNER_MAIN b
 		WHERE
 			show_yn = 'Y'
 		    AND delete_yn = 'N'
+        ORDER BY sort
 	</select>
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.company.CompanySlaveMapper">
+
+	<select id="companyInfo" parameterType="com.api.oneourbe.api.domain.company.CompanyDAO" resultType="com.api.oneourbe.api.domain.company.CompanyDAO">
+		/* 회사 정보 */
+		SELECT
+			company_seq,
+		    name,
+		    ceo,
+		    addr,
+		    email,
+		    tel
+		FROM
+            COMPANY C
+		WHERE
+			show_yn = 'Y'
+		    AND delete_yn = 'N'
+	</select>
+
+
+</mapper>
