@@ -8,6 +8,7 @@
             ct_total_seq,
             type,
 		    name,
+		    icon_img,
             comment,
             code
 		FROM
