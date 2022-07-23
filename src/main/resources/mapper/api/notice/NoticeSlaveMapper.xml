@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.notice.NoticeSlaveMapper">
+
+	<select id="footerNotice" parameterType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO" resultType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO">
+		/* footer 섹션 공지  */
+		SELECT
+            cp_footer_noti_seq,
+            type,
+            title,
+            content,
+            icon_img,
+            link_url
+		FROM
+            CP_FOOTER_NOTI CFT
+		WHERE
+			show_yn = 'Y'
+		    AND delete_yn = 'N'
+        ORDER BY sort
+	</select>
+
+
+</mapper>
