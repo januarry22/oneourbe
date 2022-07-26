@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.api.oneourbe.api.mapper.slave.notice.NoticeSlaveMapper">
 
+
+    <select id="noticeList" parameterType="com.api.oneourbe.api.domain.notice.NoticeReqDAO" resultType="com.api.oneourbe.api.domain.notice.NoticeDAO">
+        /* 공지 사항 */
+        SELECT
+            cp_noti_seq,
+            type,
+            title,
+            content,
+            view_cnt
+        FROM
+            CP_NOTI CN
+        WHERE
+          show_yn = 'Y'
+          AND delete_yn = 'N'
+          AND type = #{type}
+        ORDER BY sort
+    </select>
+
+
 	<select id="footerNotice" parameterType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO" resultType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO">
 		/* footer 섹션 공지  */
 		SELECT

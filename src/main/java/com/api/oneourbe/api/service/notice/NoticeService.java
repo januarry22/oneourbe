@@ -2,6 +2,8 @@ package com.api.oneourbe.api.service.notice;
 
 
 import com.api.oneourbe.api.domain.notice.FooterNoticeDAO;
+import com.api.oneourbe.api.domain.notice.NoticeDAO;
+import com.api.oneourbe.api.domain.notice.NoticeReqDAO;
 import com.api.oneourbe.api.domain.policy.PolicyDAO;
 import com.api.oneourbe.api.mapper.slave.notice.NoticeSlaveMapper;
 import com.api.oneourbe.api.mapper.slave.policy.PolicySlaveMapper;
@@ -24,6 +26,14 @@ public class NoticeService {
     public List<FooterNoticeDAO> footerNotice() throws Exception {
 
         return noticeSlaveMapper.footerNotice();
+    }
+
+    @Transactional(rollbackFor = Exception.class )
+    public List<NoticeDAO> noticeList(NoticeDAO noticeDAO) throws Exception {
+        NoticeReqDAO noticeReqDAO = new NoticeReqDAO();
+        noticeReqDAO.setType(noticeDAO.getType());
+
+        return noticeSlaveMapper.noticeList(noticeReqDAO);
     }
 
 }
