@@ -5,37 +5,27 @@
 
     <select id="noticeView" parameterType="com.api.oneourbe.api.domain.notice.NoticeReqDAO" resultType="com.api.oneourbe.api.domain.notice.NoticeDAO">
         /* 공지 사항 조회 */
-        SELECT
-            cp_noti_seq,
-            type,
-            title,
-            content,
-            view_cnt
-        FROM
-            CP_NOTI CN
+        UPDATE
+            notice
+        SET
+            view_cnt = view_cnt + 1
         WHERE
-          show_yn = 'Y'
-          AND delete_yn = 'N'
-          AND type = #{type}
-        ORDER BY sort
+              notice_seq = #{notice_seq}
     </select>
 
 
-	<select id="footerNotice" parameterType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO" resultType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO">
-		/* footer 섹션 공지  */
-		SELECT
-            cp_footer_noti_seq,
-            type,
-            title,
-            content,
-            icon_img,
-            link_url
-		FROM
-            CP_FOOTER_NOTI CFT
-		WHERE
-			show_yn = 'Y'
-		    AND delete_yn = 'N'
-        ORDER BY sort
+	<select id="noticeGoods" parameterType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO" resultType="com.api.oneourbe.api.domain.notice.FooterNoticeDAO">
+		/* 공지 좋아요 */
+        UPDATE
+            member_addr
+        SET nickname      = #{nickname},
+            roadname_code = #{roadname_code},
+            b_code        = #{b_code},
+            post          = #{post},
+            addr          = #{addr},
+            addr_sub      = #{addr_sub}
+        WHERE addr_seq = #{addr_seq}
+          and member_seq = #{member_seq}
 	</select>
 
 
