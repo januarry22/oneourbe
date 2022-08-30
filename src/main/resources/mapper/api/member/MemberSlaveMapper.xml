@@ -4,29 +4,29 @@
 
 	<select id="loginId" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
 		/*계정체크*/
-		select
+		SELECT
 			member_seq
-		from
+		FROM
 			member m
-		where
-			m.email = #{email} and
-			m.login_type = 'E' and
-			show_yn = 'Y' and
+		WHERE
+			m.email = #{email} AND
+			m.login_type = 'E' AND
+			show_yn = 'Y' AND
 			delete_yn = 'N'
 	</select>
 
 	<select id="login" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
 		/*로그인*/
-		select
+        SELECT
 			member_seq
-		from
+		FROM
 			member m
-		where
-			m.member_seq = #{member_seq} and
-			m.pw = password(#{pw}) and
-			m.login_type = 'E' and
-			dormancy_yn = 'N' and
-			show_yn = 'Y' and
+        WHERE
+			m.member_seq = #{member_seq} AND
+			m.pw = password(#{pw}) AND
+			m.login_type = 'E' AND
+			dormancy_yn = 'N' AND
+			show_yn = 'Y' AND
 			delete_yn = 'N'
 	</select>
 
