@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.oneourbe.api.mapper.slave.member.MemberSlaveMapper">
+
+
+    <insert id="memberJoin" parameterType="">
+        /* 사용자 가입*/
+        INSERT INTO
+                member
+                (
+                    nickname,
+                    member_seq,
+                    is_main,
+                    roadname_code,
+                    b_code,
+                    addr,
+                    addr_sub
+                )VALUES(
+                    #{nickname},
+                    #{member_seq},
+                    'N',
+                    #{roadname_code},
+                    #{b_code},
+                    #{post},
+                    #{addr},
+                    #{addr_sub}
+                )
+    </insert>
+
+
+    <update id="memberUpdate" parameterType="">
+        /*사용자 주소변경*/
+        UPDATE
+            member_addr
+        SET nickname      = #{nickname},
+            roadname_code = #{roadname_code},
+            b_code        = #{b_code},
+            post          = #{post},
+            addr          = #{addr},
+            addr_sub      = #{addr_sub}
+        WHERE addr_seq = #{addr_seq}
+          and member_seq = #{member_seq}
+    </update>
+
+</mapper>
