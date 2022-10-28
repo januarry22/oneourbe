@@ -25,3 +25,15 @@
   - Vue.js
   
   https://github.com/januarry22/oneourbe-front
+
+## 기능 정리
+   - 배너 / 카테고리 / 약관 / 공지사항
+   - 회원 관리
+   - 주문 / 배송 / 장바구니
+   
+
+## Spring
+   - Spring Security 적용
+   - Master & Slave Mapper 분리
+   - logAOP 로그 출력
+   - Swaggger UI 적용 api 문서 관리
