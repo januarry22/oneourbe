@@ -3,7 +3,7 @@
 <mapper namespace="com.api.oneourbe.api.mapper.slave.member.MemberSlaveMapper">
 
 
-    <insert id="memberJoin" parameterType="">
+    <insert id="memberJoin" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
         /* 사용자 가입*/
         INSERT INTO
                 member
@@ -28,7 +28,7 @@
     </insert>
 
 
-    <update id="memberUpdate" parameterType="">
+    <update id="memberUpdate" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
         /*사용자 주소변경*/
         UPDATE
             member_addr

@@ -17,8 +17,6 @@ public class BannerService {
 
     @Autowired
     BannerSlaveMapper bannerSlaveMapper;
-    @Autowired
-    BannerBusiness bannerBusiness;
 
 
     @Transactional(rollbackFor = Exception.class )
