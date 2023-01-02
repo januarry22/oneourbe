@@ -8,7 +8,7 @@ spring.datasource:
   maxActive: 20 #커넥션풀이 제공할 최대 커넥션수
   initialSize: 5 #초기에 생성될 커넥션수
 spring.profiles:
-  active: local
+  active: dev
 server:
   port: 8080
 
@@ -38,3 +38,6 @@ fileupload:
   ext:
     image: JPG,JPEG,JFIF,EXIF,GIF,BMP,PNG,PPM,PGM,PBM,PNM
     video: WEBM,MKV,FLV,VOB,OGV,OGG,DRC,AVI,MOV,WMV,YUV,RM,RMVB,ASF,AMV,MP4,M4P,M4V,MPG,MP2,MPEG,MPE,MPV
+log:
+  config:
+    path: /Users/isanghun/Desktop/jiwon/oneourbe/logs

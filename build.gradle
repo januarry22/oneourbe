@@ -82,7 +82,7 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 }
-ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
 sourceSets {
     main {
         resources {

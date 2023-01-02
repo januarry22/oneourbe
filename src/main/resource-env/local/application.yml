@@ -1,6 +1,5 @@
 spring.datasource:
-  driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-  url: jdbc:log4jdbc:mysql://localhost:3306/oneourbe?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+  url : jdbc:mysql://localhost:3306/oneourbe?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
   username: me
   password: th5481th
   connection-test-query: SELECT 1
@@ -9,7 +8,7 @@ spring.datasource:
   maxActive: 20 #커넥션풀이 제공할 최대 커넥션수
   initialSize: 5 #초기에 생성될 커넥션수
 spring.profiles:
-  active: local
+    active: local
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
@@ -20,17 +19,17 @@ info:
 spring:
   application:
     name: oneourbe
-  #  http:
-  #    encoding:
-  #      force: true
-  #      charset: UTF-8
+#  http:
+#    encoding:
+#      force: true
+#      charset: UTF-8
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-      #  mvc:
-      #    view:
-      #      prefix: /WEB-INF/views/
-      #      suffix: .jsp
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
       static-path-pattern: /resources/**
 server:
   servlet:
@@ -40,4 +39,4 @@ server:
 
 log:
   config:
-    path: ./logs
+    path: /Users/isanghun/Desktop/jiwon/oneourbe/logs
