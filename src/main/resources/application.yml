@@ -37,7 +37,3 @@ server:
     encoding:
       enabled: true
   port: 8080
-
-log:
-  config:
-    path: ./logs
