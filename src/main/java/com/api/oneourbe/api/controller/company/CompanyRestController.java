@@ -19,6 +19,7 @@ public class CompanyRestController {
     @Autowired
     CompanyService companyService;
 
+
     @GetMapping("/api/v1/company")
     @ApiOperation(value = "회사 정보 ")
     public ApiResponse companyInfo(HttpServletRequest httpRequest) throws Exception {
