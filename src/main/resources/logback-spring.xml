@@ -4,9 +4,10 @@
 
     <!--로그 파일 저장 위치 -->
     <springProfile name="local">
-        <property name="LOGS_PATH" value="./logs"/>
+        <property resource="logback-config.properties"/>
     </springProfile>
 
+    <property name="LOGS_PATH" value="${log.config.path}"/>
     <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){green} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}" />
     <property name="CONSOLE_LOG_CHARSET" value="${CONSOLE_LOG_CHARSET:-default}" />
 
