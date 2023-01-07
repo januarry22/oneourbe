@@ -19,6 +19,12 @@ group = 'com.api'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -36,11 +42,7 @@ swaggerSources {
         setInputFile(file("${project.buildDir}/api-spec/openapi3.yaml"))
     }
 }
-repositories {
-    mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
-    maven { url 'https://repo.spring.io/snapshot' }
-}
+
 
 dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -77,9 +79,6 @@ dependencies {
     //lo4jdbc 쿼리 로그
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
-    // srping docs
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
-
     //aspect
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 
@@ -89,13 +88,15 @@ dependencies {
     // spring graphql
     testImplementation 'org.springframework.graphql:spring-graphql-test'
 
+    // srping docs
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
     // Spring Rest Docs
-    testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
+  //  testImplementation 'org.springframework.restdocs:spring-restdocs-restassured'
     testImplementation "com.epages:restdocs-api-spec-restassured:${restdocsApiSpecVersion}"
     testImplementation 'io.rest-assured:rest-assured'
-
     // swagger
     swaggerUI 'org.webjars:swagger-ui:4.11.1'
+
 //    implementation 'io.springfox:springfox-boot-starter:3.0.0'
 //    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     // jsp

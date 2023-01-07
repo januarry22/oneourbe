@@ -25,7 +25,7 @@ public class NoticeRestController {
     NoticeService noticeService;
 
     @PostMapping("/api/v1/noti")
-    public Map noticeList(HttpServletRequest httpRequest, @RequestBody NoticeDAO noticeDAO) throws Exception {
+    public ApiResponse noticeList(HttpServletRequest httpRequest, @RequestBody NoticeDAO noticeDAO) throws Exception {
 
         ApiResponse apiRes = new ApiResponse();
 
@@ -33,16 +33,13 @@ public class NoticeRestController {
         apiRes.setData(noticeService.noticeList(noticeDAO));
         apiRes.setSuccess(true);
 
-        Map<String, Object> res = new HashMap<>();
-        res.put("type",noticeDAO.getType());
-        return res;
+        return apiRes;
     }
 
     @GetMapping("/api/v1/noti/footer")
     public ApiResponse footerNotice(HttpServletRequest httpRequest) throws Exception {
 
         ApiResponse apiRes = new ApiResponse();
-
 
         apiRes.setAlert(true);
         apiRes.setData(noticeService.footerNotice());
