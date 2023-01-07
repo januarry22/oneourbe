@@ -8,12 +8,15 @@ import com.api.oneourbe.util.ApiResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,15 +27,17 @@ public class NoticeRestController {
 
     @PostMapping("/api/v1/noti")
     @ApiOperation(value = "공지사항")
-    public ApiResponse noticeList(HttpServletRequest httpRequest, @RequestBody NoticeDAO noticeDAO) throws Exception {
+    public Map noticeList(HttpServletRequest httpRequest, @RequestBody NoticeDAO noticeDAO) throws Exception {
 
         ApiResponse apiRes = new ApiResponse();
-
 
         apiRes.setAlert(true);
         apiRes.setData(noticeService.noticeList(noticeDAO));
         apiRes.setSuccess(true);
-        return apiRes;
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("type",noticeDAO.getType());
+        return res;
     }
 
     @GetMapping("/api/v1/noti/footer")
