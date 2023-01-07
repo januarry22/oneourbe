@@ -4,7 +4,6 @@ package com.api.oneourbe.api.controller.login;
 import com.api.oneourbe.util.ApiResponse;
 import com.api.oneourbe.api.domain.member.MemberInfoDAO;
 import com.api.oneourbe.api.service.auth.AuthService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ public class LoginRestController {
     AuthService authService;
 
     @PostMapping("/api/v1/login")
-    @ApiOperation(value = "로그인")
     public ApiResponse login(HttpServletRequest httpRequest, @RequestBody MemberInfoDAO memberInfoDAO) {
 
         ApiResponse apiRes = new ApiResponse();
@@ -36,7 +34,6 @@ public class LoginRestController {
     }
 
     @GetMapping("/api/v1/login/{id}")
-    @ApiOperation(value = "로그인 Get")
     public ApiResponse loginGet(HttpServletRequest httpRequest, @PathVariable long id) {
 
         ApiResponse apiRes = new ApiResponse();

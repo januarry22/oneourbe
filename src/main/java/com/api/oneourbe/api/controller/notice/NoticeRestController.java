@@ -5,7 +5,6 @@ import com.api.oneourbe.api.domain.notice.NoticeDAO;
 import com.api.oneourbe.api.service.notice.NoticeService;
 import com.api.oneourbe.api.service.policy.PolicyService;
 import com.api.oneourbe.util.ApiResponse;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,6 @@ public class NoticeRestController {
     NoticeService noticeService;
 
     @PostMapping("/api/v1/noti")
-    @ApiOperation(value = "공지사항")
     public Map noticeList(HttpServletRequest httpRequest, @RequestBody NoticeDAO noticeDAO) throws Exception {
 
         ApiResponse apiRes = new ApiResponse();
@@ -41,7 +39,6 @@ public class NoticeRestController {
     }
 
     @GetMapping("/api/v1/noti/footer")
-    @ApiOperation(value = "footer 섹션 공지 ")
     public ApiResponse footerNotice(HttpServletRequest httpRequest) throws Exception {
 
         ApiResponse apiRes = new ApiResponse();
