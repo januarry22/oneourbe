@@ -1,6 +1,8 @@
 package com.api.oneourbe.api.controller.banner;
 
+import com.api.oneourbe.api.domain.notice.NoticeDAO;
 import com.api.oneourbe.api.util.BaseOfApiControllerTest;
+import com.api.oneourbe.util.ApiResponse;
 import net.minidev.json.JSONObject;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -49,9 +51,6 @@ public class TestBannerRestController extends BaseOfApiControllerTest {
     void get_api_noti_true() {
         String type = "CS_NOTI";
 
-//        NoticeDAO noticeDAO = new NoticeDAO();
-//        noticeDAO.setType("CS_NOTI");
-
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", type);
 
@@ -74,11 +73,11 @@ public class TestBannerRestController extends BaseOfApiControllerTest {
                         .body("sessionId", Matchers.equalTo(type))
                         .body("timestamp", Matchers.equalTo(type))
                         .body("data", Matchers.equalTo(type))
-                        .body("data[].cp_noti_seq", Matchers.equalTo(type))
-                        .body("data[].type", Matchers.equalTo(type))
-                        .body("data[].title", Matchers.equalTo(type))
-                        .body("data[].content", Matchers.equalTo(type))
-                        .body("data[].view_cnt", Matchers.equalTo(type));
+                        .body("data.[].cp_noti_seq", Matchers.equalTo(type))
+                        .body("data.[].type", Matchers.equalTo(type))
+                        .body("data.[].title", Matchers.equalTo(type))
+                        .body("data.[].content", Matchers.equalTo(type))
+                        .body("data.[].view_cnt", Matchers.equalTo(type));
     }
 
     /* TODO : type 데이터를 db에서 검증후 테스트 케이스로 입력되게 수정 필요
