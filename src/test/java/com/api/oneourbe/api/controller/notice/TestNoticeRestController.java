@@ -51,12 +51,12 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
             fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("공지사항_List").optional(),
             fieldWithPath("sessionId").type(JsonFieldType.STRING).description("공지사항_List").optional(),
             fieldWithPath("timestamp").type(JsonFieldType.STRING).description("공지사항_List").optional(),
-            fieldWithPath("data").type(JsonFieldType.ARRAY).description("공지사항_List"),
-            fieldWithPath("data.[].cp_noti_seq").type(JsonFieldType.NUMBER).description("공지사항_List"),
-            fieldWithPath("data.[].type").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data.[].view_cnt").type(JsonFieldType.NUMBER).description("공지사항_List")
+            fieldWithPath("data[]").type(JsonFieldType.ARRAY).description("공지사항_List"),
+            fieldWithPath("data[].cp_noti_seq").type(JsonFieldType.NUMBER).description("공지사항_List"),
+            fieldWithPath("data[].type").type(JsonFieldType.STRING).description("공지사항_List"),
+            fieldWithPath("data[].title").type(JsonFieldType.STRING).description("공지사항_List"),
+            fieldWithPath("data[].content").type(JsonFieldType.STRING).description("공지사항_List"),
+            fieldWithPath("data[].view_cnt").type(JsonFieldType.NUMBER).description("공지사항_List")
 
     );
 
@@ -66,6 +66,8 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
 
         NoticeDAO noticeDAO = new NoticeDAO();
         noticeDAO.setType("CS_NOTI");
+        List<NoticeDAO> res = noticeService.noticeList(noticeDAO);
+        List list = new ArrayList();
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", type);
@@ -89,12 +91,12 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
                         .body("alert", Matchers.equalTo(true))
                         .body("errCode", Matchers.equalTo(null))
                         .body("errMsg", Matchers.equalTo(null))
-                        .body("data", Matchers.equalTo(noticeService.noticeList(noticeDAO)))
-                        .body("data.[].cp_noti_seq", Matchers.equalTo(type))
-                        .body("data.[].type", Matchers.equalTo(type))
-                        .body("data.[].title", Matchers.equalTo(type))
-                        .body("data.[].content", Matchers.equalTo(type))
-                        .body("data.[].view_cnt", Matchers.equalTo(type));
+                        .body("data[]", Matchers.equalTo(list))
+                        .body("data[].cp_noti_seq", Matchers.equalTo(list))
+                        .body("data[].type", Matchers.equalTo(list))
+                        .body("data[].title", Matchers.equalTo(list))
+                        .body("data[].content", Matchers.equalTo(list))
+                        .body("data[].view_cnt", Matchers.equalTo(list));
     }
 
     /* TODO : type 데이터를 db에서 검증후 테스트 케이스로 입력되게 수정 필요
