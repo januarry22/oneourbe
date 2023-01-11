@@ -32,32 +32,22 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
     NoticeService noticeService;
 
     private static final Snippet REQUEST_FIELDS = requestFields(
-            fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("공지사항_List").optional(),
-            fieldWithPath("alert").type(JsonFieldType.BOOLEAN).description("공지사항_List").optional(),
-            fieldWithPath("errCode").type(JsonFieldType.OBJECT).description("공지사항_List").optional(),
-            fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("공지사항_List").optional(),
-            fieldWithPath("sessionId").type(JsonFieldType.STRING).description("공지사항_List").optional(),
-            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("공지사항_List").optional(),
-            fieldWithPath("cp_noti_seq").type(JsonFieldType.NUMBER).description("공지사항_타입").optional(),
-            fieldWithPath("type").type(JsonFieldType.STRING).description("공지사항_타입").optional(),
-            fieldWithPath("title").type(JsonFieldType.STRING).description("공지사항_타입").optional(),
-            fieldWithPath("content").type(JsonFieldType.STRING).description("공지사항_타입").optional(),
-            fieldWithPath("view_cnt").type(JsonFieldType.NUMBER).description("공지사항_타입").optional()
+            fieldWithPath("type").type(JsonFieldType.STRING).description("공지사항_타입").optional()
     );
 
     private static final Snippet RESPONSE_FIELDS = responseFields(
-            fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("공지사항_List").optional(),
-            fieldWithPath("alert").type(JsonFieldType.BOOLEAN).description("공지사항_List").optional(),
-            fieldWithPath("errCode").type(JsonFieldType.OBJECT).description("공지사항_List").optional(),
-            fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("공지사항_List").optional(),
-            fieldWithPath("sessionId").type(JsonFieldType.STRING).description("공지사항_List").optional(),
-            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("공지사항_List").optional(),
-            fieldWithPath("data[]").type(JsonFieldType.ARRAY).description("공지사항_List"),
-            fieldWithPath("data[].cp_noti_seq").type(JsonFieldType.NUMBER).description("공지사항_List"),
-            fieldWithPath("data[].type").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data[].title").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data[].content").type(JsonFieldType.STRING).description("공지사항_List"),
-            fieldWithPath("data[].view_cnt").type(JsonFieldType.NUMBER).description("공지사항_List")
+            fieldWithPath("success").type(JsonFieldType.BOOLEAN).description("statusCode").optional(),
+            fieldWithPath("alert").type(JsonFieldType.BOOLEAN).description("ALERT").optional(),
+            fieldWithPath("errCode").type(JsonFieldType.OBJECT).description("ERROR_CODE").optional(),
+            fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("ERROR_MESSAGE").optional(),
+            fieldWithPath("sessionId").type(JsonFieldType.STRING).description("sessionId").ignored(),
+            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored(),
+            fieldWithPath("data").type(JsonFieldType.ARRAY).description("공지사항_List"),
+            fieldWithPath("data[].cp_noti_seq").type(JsonFieldType.NUMBER).description("공지사항_SEQ"),
+            fieldWithPath("data[].type").type(JsonFieldType.STRING).description("공지사항_종류"),
+            fieldWithPath("data[].title").type(JsonFieldType.STRING).description("공지사항_제목"),
+            fieldWithPath("data[].content").type(JsonFieldType.STRING).description("공지사항_내용"),
+            fieldWithPath("data[].view_cnt").type(JsonFieldType.NUMBER).description("공지사항_조회수")
 
     );
 
@@ -80,10 +70,7 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
 
                 .then().assertThat()
                     .statusCode(HttpStatus.OK.value())
-                        .body("success", Matchers.equalTo(true))
-                        .body("alert", Matchers.equalTo(true))
-                        .body("errCode", Matchers.equalTo(null))
-                        .body("errMsg", Matchers.equalTo(null))
+                        .body("success", Matchers.equalTo(true)).and()
                         .body("data.cp_noti_seq", hasItem(1))
                         .body("data.type", hasItem("CS_NOTI"))
                         .body("data.title", hasItem("8월의 멘토모집"))
