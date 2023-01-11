@@ -23,6 +23,7 @@ import java.util.Map;
 import static com.epages.restdocs.apispec.RestAssuredRestDocumentationWrapper.document;
 import static io.restassured.RestAssured.filters;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 public class TestNoticeRestController extends BaseOfApiControllerTest {
@@ -64,11 +65,6 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
     void get_api_noti_true() throws Exception {
         String type = "CS_NOTI";
 
-        NoticeDAO noticeDAO = new NoticeDAO();
-        noticeDAO.setType("CS_NOTI");
-        List<NoticeDAO> res = noticeService.noticeList(noticeDAO);
-        List list = new ArrayList();
-
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", type);
 
@@ -82,21 +78,17 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
                 .when()
                     .post("/api/v1/noti")
 
-                .then()
+                .then().assertThat()
                     .statusCode(HttpStatus.OK.value())
- //                       .body("data", Matchers.equalTo(apiResponse.getData()));
-
-
                         .body("success", Matchers.equalTo(true))
                         .body("alert", Matchers.equalTo(true))
                         .body("errCode", Matchers.equalTo(null))
                         .body("errMsg", Matchers.equalTo(null))
-                        .body("data[]", Matchers.equalTo(list))
-                        .body("data[].cp_noti_seq", Matchers.equalTo(list))
-                        .body("data[].type", Matchers.equalTo(list))
-                        .body("data[].title", Matchers.equalTo(list))
-                        .body("data[].content", Matchers.equalTo(list))
-                        .body("data[].view_cnt", Matchers.equalTo(list));
+                        .body("data.cp_noti_seq", hasItem(1))
+                        .body("data.type", hasItem("CS_NOTI"))
+                        .body("data.title", hasItem("8월의 멘토모집"))
+                        .body("data.content", hasItem("8월의 멘토모집"))
+                        .body("data.view_cnt", hasItem(0));
     }
 
     /* TODO : type 데이터를 db에서 검증후 테스트 케이스로 입력되게 수정 필요
