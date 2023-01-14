@@ -32,7 +32,7 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
     NoticeService noticeService;
 
     private static final Snippet REQUEST_FIELDS = requestFields(
-            fieldWithPath("type").type(JsonFieldType.STRING).description("공지사항_타입").optional()
+            fieldWithPath("type").type(JsonFieldType.STRING).description("공지사항_타입")
     );
 
     private static final Snippet RESPONSE_FIELDS = responseFields(
