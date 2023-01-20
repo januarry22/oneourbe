@@ -32,8 +32,7 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
             fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("ERROR_MESSAGE").optional(),
             fieldWithPath("sessionId").type(JsonFieldType.STRING).description("sessionId").ignored(),
             fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored(),
-            fieldWithPath("data").type(JsonFieldType.STRING).description("timestamp").ignored(),
-            );
+             );
 
     @Test
     void get_api_noti_true() throws Exception {
