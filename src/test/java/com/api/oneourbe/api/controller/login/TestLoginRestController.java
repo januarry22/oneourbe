@@ -36,7 +36,7 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
 
     @Test
     void get_api_noti_true() throws Exception {
-        String type = "CS_NOTI";
+        String type = "login";
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", type);
