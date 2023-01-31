@@ -31,7 +31,7 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
             fieldWithPath("errCode").type(JsonFieldType.OBJECT).description("ERROR_CODE").optional(),
             fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("ERROR_MESSAGE").optional(),
             fieldWithPath("sessionId").type(JsonFieldType.STRING).description("sessionId").ignored(),
-            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored(),
+            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored()
     );
 
     @Test
@@ -49,7 +49,7 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
                     .log().all()
 
                 .when()
-                    .post("/api/v1/noti")
+                    .post("/api/v1/login")
 
                 .then().assertThat()
                     .statusCode(HttpStatus.OK.value())
@@ -61,26 +61,4 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
                         .body("data.view_cnt", hasItem(0));
     }
 
-    /* TODO : type 데이터를 db에서 검증후 테스트 케이스로 입력되게 수정 필요
-    @Test
-    void get_api_banner_false() {
-        String type = "FALSE_TYPE";
-
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("type", type);
-
-        given(spec)
-                .filter(document(DEFAULT_RESTDOC_PATH, REQUEST_FIELDS, RESPONSE_FIELDS)) // API 문서 관련 필터 추가
-                .accept(MediaType.APPLICATION_JSON_VALUE)
-                .header("Content-type", "application/json")
-                .body(requestBody)
-                .log().all()
-
-                .when()
-                .post("/api/v1/noti")
-
-                .then()
-                .statusCode(HttpStatus.OK.value())
-                .body("type", Matchers.equalTo(type));
-    }*/
 }

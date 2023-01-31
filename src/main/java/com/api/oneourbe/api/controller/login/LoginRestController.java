@@ -25,10 +25,10 @@ public class LoginRestController {
 
         MemberInfoDAO memberInfoDAO1 = new MemberInfoDAO();
         memberInfoDAO1.setMember_seq(1);
-        memberInfoDAO1.setEmail("tlswldnjs8865@gmail.com");
+        memberInfoDAO1.setEmail(memberInfoDAO.getEmail());
 
         apiRes.setAlert(true);
-        apiRes.setData(memberInfoDAO1);
+        apiRes.setData(authService.userCheck(memberInfoDAO));
         apiRes.setSuccess(true);
         return apiRes;
     }

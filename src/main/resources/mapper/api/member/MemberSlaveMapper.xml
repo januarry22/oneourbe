@@ -2,15 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.api.oneourbe.api.mapper.slave.member.MemberSlaveMapper">
 
-	<select id="loginId" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
+	<select id="userCheck" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
 		/*계정체크*/
 		SELECT
-			member_seq
+            USER_INFO_SEQ
+            ,USER_ID
+            ,USER_NAME
+            ,USER_PASSWD
 		FROM
-			member m
+            ONE_USER_INFO m
 		WHERE
-			m.email = #{email} AND
-			m.login_type = 'E' AND
+            USER_ID = #{email}
 			show_yn = 'Y' AND
 			delete_yn = 'N'
 	</select>
