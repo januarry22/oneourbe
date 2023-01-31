@@ -23,10 +23,6 @@ public class LoginRestController {
 
         ApiResponse apiRes = new ApiResponse();
 
-        MemberInfoDAO memberInfoDAO1 = new MemberInfoDAO();
-        memberInfoDAO1.setMember_seq(1);
-        memberInfoDAO1.setEmail(memberInfoDAO.getEmail());
-
         apiRes.setAlert(true);
         apiRes.setData(authService.userCheck(memberInfoDAO));
         apiRes.setSuccess(true);
