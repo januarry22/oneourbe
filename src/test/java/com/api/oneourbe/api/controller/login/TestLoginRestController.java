@@ -31,15 +31,20 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
             fieldWithPath("errCode").type(JsonFieldType.OBJECT).description("ERROR_CODE").optional(),
             fieldWithPath("errMsg").type(JsonFieldType.OBJECT).description("ERROR_MESSAGE").optional(),
             fieldWithPath("sessionId").type(JsonFieldType.STRING).description("sessionId").ignored(),
-            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored()
-    );
+            fieldWithPath("timestamp").type(JsonFieldType.STRING).description("timestamp").ignored(),
+            fieldWithPath("data.member_seq").type(JsonFieldType.NUMBER).description("유저_SEQ"),
+            fieldWithPath("data.email").type(JsonFieldType.STRING).description("유저_ID"),
+            fieldWithPath("data.name").type(JsonFieldType.STRING).description("유저_이름"),
+            fieldWithPath("data.user_role").type(JsonFieldType.STRING).description("유저_권한").optional()
+
+            );
 
     @Test
-    void get_api_noti_true() throws Exception {
-        String type = "login";
+    void get_api_user_info_true() throws Exception {
+        String email = "test";
 
         JSONObject requestBody = new JSONObject();
-        requestBody.put("type", type);
+        requestBody.put("email", email);
 
                 given(spec)
                     .filter(document(DEFAULT_RESTDOC_PATH, REQUEST_FIELDS, RESPONSE_FIELDS)) // API 문서 관련 필터 추가
@@ -54,11 +59,9 @@ public class TestLoginRestController extends BaseOfApiControllerTest {
                 .then().assertThat()
                     .statusCode(HttpStatus.OK.value())
                         .body("success", Matchers.equalTo(true)).and()
-                        .body("data.cp_noti_seq", hasItem(1))
-                        .body("data.type", hasItem("CS_NOTI"))
-                        .body("data.title", hasItem("8월의 멘토모집"))
-                        .body("data.content", hasItem("8월의 멘토모집"))
-                        .body("data.view_cnt", hasItem(0));
+                        .body("data.member_seq", Matchers.equalTo(1))
+                        .body("data.email", Matchers.equalTo(email))
+                        .body("data.name", Matchers.equalTo("test_user"));
     }
 
 }
