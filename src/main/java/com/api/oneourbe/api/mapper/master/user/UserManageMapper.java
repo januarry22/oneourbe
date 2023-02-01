@@ -1,4 +1,4 @@
-package com.api.oneourbe.api.mapper.master.member;
+package com.api.oneourbe.api.mapper.master.user;
 
 import com.api.oneourbe.api.domain.member.MemberInfoDAO;
 import org.apache.ibatis.annotations.Mapper;

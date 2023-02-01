@@ -14,7 +14,7 @@
                 )VALUES(
                     #{email}
                     ,#{name}
-                    ,#{pwd}
+                    ,#{user_role}
                 )
     </insert>
 
