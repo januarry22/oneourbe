@@ -1,35 +1,20 @@
 package com.api.oneourbe.api.controller.notice;
 
-import com.api.oneourbe.api.domain.notice.NoticeDAO;
-import com.api.oneourbe.api.service.notice.NoticeService;
 import com.api.oneourbe.api.util.BaseOfApiControllerTest;
-import com.api.oneourbe.util.ApiResponse;
-import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.restdocs.snippet.Snippet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static com.epages.restdocs.apispec.RestAssuredRestDocumentationWrapper.document;
-import static io.restassured.RestAssured.filters;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 public class TestNoticeRestController extends BaseOfApiControllerTest {
-
-    @Autowired
-    NoticeService noticeService;
 
     private static final Snippet REQUEST_FIELDS = requestFields(
             fieldWithPath("type").type(JsonFieldType.STRING).description("공지사항_타입")
@@ -58,24 +43,24 @@ public class TestNoticeRestController extends BaseOfApiControllerTest {
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", type);
 
-                given(spec)
-                    .filter(document(DEFAULT_RESTDOC_PATH, REQUEST_FIELDS, RESPONSE_FIELDS)) // API 문서 관련 필터 추가
-                    .accept(MediaType.APPLICATION_JSON_VALUE)
-                    .header("Content-type", "application/json")
-                    .body(requestBody)
-                    .log().all()
+        given(spec)
+                .filter(document(DEFAULT_RESTDOC_PATH, REQUEST_FIELDS, RESPONSE_FIELDS)) // API 문서 관련 필터 추가
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .header("Content-type", "application/json")
+                .body(requestBody)
+                .log().all()
 
                 .when()
-                    .post("/api/v1/noti")
+                .post("/api/v1/noti")
 
                 .then().assertThat()
-                    .statusCode(HttpStatus.OK.value())
-                        .body("success", Matchers.equalTo(true)).and()
-                        .body("data.cp_noti_seq", hasItem(1))
-                        .body("data.type", hasItem("CS_NOTI"))
-                        .body("data.title", hasItem("8월의 멘토모집"))
-                        .body("data.content", hasItem("8월의 멘토모집"))
-                        .body("data.view_cnt", hasItem(0));
+                .statusCode(HttpStatus.OK.value())
+                .body("success", Matchers.equalTo(true)).and()
+                .body("data.cp_noti_seq", hasItem(1))
+                .body("data.type", hasItem("CS_NOTI"))
+                .body("data.title", hasItem("8월의 멘토모집"))
+                .body("data.content", hasItem("8월의 멘토모집"))
+                .body("data.view_cnt", hasItem(0));
     }
 
     /* TODO : type 데이터를 db에서 검증후 테스트 케이스로 입력되게 수정 필요
