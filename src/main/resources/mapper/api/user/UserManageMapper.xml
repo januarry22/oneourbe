@@ -16,8 +16,37 @@
                     ,#{name}
                     ,#{user_role}
                 )
+        <selectKey keyProperty="member_seq" resultType="Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
+    <select id="userInfo" parameterType="Integer">
+        /*계정 정보*/
+        SELECT
+            USER_INFO_SEQ as member_seq
+             ,USER_ID as email
+             ,USER_NAME as name
+             ,USER_PASSWD
+        FROM
+            ONE_USER_INFO m
+        WHERE
+            USER_INFO_SEQ = #{member_seq} AND
+            show_yn = 'Y' AND
+            delete_yn = 'N'
+    </select>
+
+    <select id="userJoinValidate" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO" resultType="int">
+        /*계정 중복 체크*/
+        SELECT
+            COUNT(*) AS CNT
+        FROM
+            ONE_USER_INFO m
+        WHERE
+            USER_ID = #{email} AND
+            show_yn = 'Y' AND
+            delete_yn = 'N'
+    </select>
 
     <update id="memberUpdate" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
         /*사용자 주소변경*/
