@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserManageMapper {
 
-    int userJoin(MemberInfoDAO memberInfoDAO);
+    MemberInfoDAO userJoin(MemberInfoDAO memberInfoDAO);
 
-    MemberInfoDAO userInfo(int member_seq);
+    MemberInfoDAO userInfo(MemberInfoDAO member_seq);
 
     int userJoinValidate(MemberInfoDAO memberInfoDAO);
 }

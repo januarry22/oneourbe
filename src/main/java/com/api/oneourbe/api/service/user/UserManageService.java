@@ -7,7 +7,7 @@ import com.api.oneourbe.api.domain.member.MemberInfoDAO;
 public interface UserManageService {
 
     public MemberInfoDAO userJoin(MemberInfoDAO memberInfoDAO);
-    MemberInfoDAO userInfo(int member_seq);
+    public MemberInfoDAO userInfo(MemberInfoDAO member_seq);
     public int userJoinValidate(MemberInfoDAO memberInfoDAO);
 
 }
