@@ -39,4 +39,4 @@
    - Swaggger UI 적용 api 문서 관리
 
 # Document
-   - Spring Docg
+   - Spring Docs & Swagger UI
