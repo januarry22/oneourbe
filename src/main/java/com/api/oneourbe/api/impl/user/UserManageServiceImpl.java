@@ -21,7 +21,7 @@ public class UserManageServiceImpl implements UserManageService {
             return null;
         }
         MemberInfoDAO member_seq = userManageMapper.userJoin(memberInfoDAO);
-        MemberInfoDAO requestMemberInfo = userManageMapper.userInfo(member_seq);
+        MemberInfoDAO requestMemberInfo = userInfo(member_seq);
         return requestMemberInfo;
     }
 
