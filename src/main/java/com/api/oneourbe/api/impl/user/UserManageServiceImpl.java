@@ -20,13 +20,21 @@ public class UserManageServiceImpl implements UserManageService {
         if(userJoinValidate(memberInfoDAO)>0){
             return null;
         }
-        MemberInfoDAO member_seq = userManageMapper.userJoin(memberInfoDAO);
-        MemberInfoDAO requestMemberInfo = userInfo(member_seq);
+        MemberInfoDAO requestParam = new MemberInfoDAO();
+        requestParam.setEmail(memberInfoDAO.getEmail());
+        requestParam.setUser_role(memberInfoDAO.getUser_role());
+        requestParam.setName(memberInfoDAO.getName());
+
+        int joinCnt = userManageMapper.userJoin(requestParam);
+        if(joinCnt<=0){
+            return null;
+        }
+        MemberInfoDAO requestMemberInfo = userInfo(requestParam.getMember_seq());
         return requestMemberInfo;
     }
 
     @Override
-    public MemberInfoDAO userInfo(MemberInfoDAO member_seq){
+    public MemberInfoDAO userInfo(long member_seq){
         return userManageMapper.userInfo(member_seq);
     }
 

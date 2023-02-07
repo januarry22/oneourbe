@@ -16,12 +16,12 @@
                     ,#{name}
                     ,#{user_role}
                 )
-        <selectKey keyProperty="member_seq" resultType="Long">
+        <selectKey keyProperty="member_seq" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
-    <select id="userInfo" parameterType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
+    <select id="userInfo" resultType="com.api.oneourbe.api.domain.member.MemberInfoDAO">
         /*계정 정보*/
         SELECT
             USER_INFO_SEQ as member_seq
