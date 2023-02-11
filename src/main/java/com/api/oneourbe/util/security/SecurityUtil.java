@@ -13,7 +13,7 @@ import java.util.Map;
 public class SecurityUtil {
 
     public Object oAuth(){
-
-        return null;
+        Object ob = new Object();
+        return ob;
     }
 }
