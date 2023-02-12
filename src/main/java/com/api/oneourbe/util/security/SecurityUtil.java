@@ -14,6 +14,8 @@ public class SecurityUtil {
 
     public Object oAuth(){
         Object ob = new Object();
+        Object ob = new Object();
+        Object ob = new Object();
         return ob;
     }
 }
