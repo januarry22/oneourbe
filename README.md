@@ -36,7 +36,7 @@
    - Spring Security 적용
    - Master & Slave Mapper 분리
    - logAOP 로그 출력
-   - Swaggger UI 적용 api 문서 관리
+   - Swaggger UI + Javadocs 적용 api 문서 관리
 
 # Document
    - Spring Docs & Swagger UI
