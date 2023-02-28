@@ -39,4 +39,5 @@
    - Swaggger UI + Javadocs 적용 api 문서 관리
 
 # Document
-   - Spring Docs & Swagger UI
+   - Swagger UI
+   - Spring Rest Docs
