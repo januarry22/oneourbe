@@ -8,8 +8,7 @@
     Spring Boot 2.7
     Spring Cloud Config
 - Java
-  JDK Version : OpenJDK 11
-  JDK 11 idea 내장 
+  JDK 11 
   
 - Build
   Gradle
