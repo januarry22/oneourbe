@@ -18,7 +18,7 @@ Shoppingmall
 
 - DB
   Mysql 5.7
-  Mybatis 3.5.7
+  Mybatis 3.5
 
 # Front-End 
   - Vue.js
