@@ -44,3 +44,4 @@
 # Document
    - Swagger UI
    - Spring Rest Docs
+   - Spring Config Cloud
