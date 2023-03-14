@@ -2,14 +2,12 @@
 
 
 
-
-
 # Back-End 
 
 - Spring
     Spring RESTful API 
     
-    Spring Boot 2.7
+    Spring Boot 3.4
     
     Spring Cloud Config
 - Java
