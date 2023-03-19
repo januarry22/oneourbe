@@ -1,9 +1,6 @@
 # oneourbe
 
-
-
-
-
+- Open shoppingmall
 # Back-End 
 
 - Spring
